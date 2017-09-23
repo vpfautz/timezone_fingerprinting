@@ -1,0 +1,15 @@
+{
+  "name": "timezone_fingerprinting",
+  "version": "1.0.0",
+  "description": "Fingerprinting using historical data to get more precise information of geolocation.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Victor Pfautz",
+  "license": "ISC",
+  "dependencies": {
+    "moment-timezone": "^0.5.13"
+  }
+}

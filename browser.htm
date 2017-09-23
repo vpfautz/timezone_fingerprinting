@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Timezone fingerprinting</title>
+</head>
+<body>
+  <p>possible timezones:</p>
+  <p id="timezones"></p>
+
+  <script src="http://momentjs.com/downloads/moment.min.js"></script>
+  <script src="http://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+  <script type="text/javascript">
+    function test(name) {
+      let zone = moment.tz.zone(name);
+      for (let i = 0; i < 1317731928000; i += 24 * 3600 * 1000) {
+        let d = new Date();
+        d.setTime(i);
+        let local_offset = d.getTimezoneOffset();
+        let zone_offset = zone.offset(i);
+
+        if (local_offset != zone_offset) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    function getMatchingTimezones() {
+      let r = [];
+      for (let name of moment.tz.names()) {
+        if (test(name)) {
+          r.push(name);
+        }
+      }
+      return r;
+    }
+
+    document.getElementById("timezones").innerHTML = getMatchingTimezones().join("<br>\n");
+  </script>
+</body>
+</html>
